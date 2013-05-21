@@ -25,6 +25,7 @@ public class VerificadorMailTest {
 	@Test
 	public void testADotAfterAt() throws Exception {
 		assertFalse(verificador.isValidEmailAddress("juan@mailcom"));
+		assertTrue(verificador.isValidEmailAddress("juan@mail.patata.com"));
 	}
 
 }

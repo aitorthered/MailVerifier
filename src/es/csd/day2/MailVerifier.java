@@ -3,13 +3,10 @@ package es.csd.day2;
 public class MailVerifier {
 
 	public boolean isValidEmailAddress(String mail) {
-		boolean isValid = false;
-		int positionOfAt = hasOnlyOneAt(mail);
-		if (positionOfAt != -1 && hasNotSpacesAndNotCommas(mail)
-				&& dotAfterAt(mail.substring(positionOfAt))) {
-			isValid = true;
-		}
-		return isValid;
+
+		int positionOfAt = indexOfOnlyAt(mail);
+		return positionOfAt != -1 && hasNotSpacesAndNotCommas(mail)
+				&& dotAfterAt(mail.substring(positionOfAt));
 	}
 
 	private boolean dotAfterAt(String mailAfterAt) {
@@ -27,7 +24,7 @@ public class MailVerifier {
 	 * @param mail
 	 * @return
 	 */
-	private int hasOnlyOneAt(String mail) {
+	private int indexOfOnlyAt(String mail) {
 		String[] splitStr = mail.split("@");
 		if (splitStr.length != 2) {
 			return -1;
