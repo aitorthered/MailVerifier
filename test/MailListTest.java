@@ -22,43 +22,43 @@ public class MailListTest {
 	@Test
 	public void testCheckMailSeparatedByComas() throws Exception {
 		Set<String> mySet = myMailList
-				.getMails("mail@primero.com,mail@segundo.com,"
-						+ "mail@este.estabien.com");
+				.getMails("ma.il@primero.com,ma.il@segundo.com,"
+						+ "ma.il@este.estabien.com");
 		assertEquals(3, mySet.size());
-		mySet = myMailList.getMails("mail@primero.com mail@segundo.com;"
-				+ "mail@este.estabien.com");
+		mySet = myMailList.getMails("ma.il@primero.com m.ail@segundo.com;"
+				+ "ma.il@este.estabien.com");
 		assertEquals(0, mySet.size());
 	}
 
 	@Test
 	public void testCheckMailSeparatedByComasWithWhiteSpaces() throws Exception {
 		Set<String> mySet = myMailList
-				.getMails(" mail@primero.com ,mail@segundo.com ,"
-						+ " mail@este.estabien.com ");
+				.getMails(" ma.il@primero.com ,ma.il@segundo.com ,"
+						+ " ma.il@este.estabien.com ");
 		assertEquals(3, mySet.size());
-		assertTrue(mySet.contains("mail@primero.com"));
-		assertFalse(mySet.contains(" mail@primero.com "));
+		assertTrue(mySet.contains("ma.il@primero.com"));
+		assertFalse(mySet.contains(" ma.il@primero.com "));
 
 	}
 
 	@Test
 	public void testCheckOnlyVerifiedMailsOnSet() throws Exception {
 		Set<String> mySet = myMailList
-				.getMails("mail@primero.com,mail@segundocom,"
-						+ "mail@este@.estabien.com");
-		assertTrue(mySet.contains("mail@primero.com"));
+				.getMails("ma.il@primero.com,ma.il@segundocom,"
+						+ "ma.il@este@.estabien.com");
+		assertTrue(mySet.contains("ma.il@primero.com"));
 		assertEquals(1, mySet.size());
-		assertFalse(mySet.contains("mail@segundocom"));
-		assertFalse(mySet.contains("mail@este@.estabien.com"));
+		assertFalse(mySet.contains("ma.il@segundocom"));
+		assertFalse(mySet.contains("ma.il@este@.estabien.com"));
 
 	}
 
 	@Test
 	public void testNotDuplicatedEmails() throws Exception {
 		Set<String> mySet = myMailList
-				.getMails(" mail@primero.com ,mail@segundo.com ,"
-						+ " mail@este.estabien.com, mail@primero.com ,mail@segundo.com ,"
-						+ " mail@este.estabien.com ");
+				.getMails(" ma.il@primero.com ,ma.il@segundo.com ,"
+						+ " ma.il@este.estabien.com, ma.il@primero.com ,ma.il@segundo.com ,"
+						+ " ma.il@este.estabien.com ");
 		assertEquals(3, mySet.size());
 
 	}

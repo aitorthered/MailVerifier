@@ -6,7 +6,8 @@ public class MailVerifier {
 
 		int positionOfAt = indexOfOnlyAt(mail);
 		return positionOfAt != -1 && hasNotSpacesAndNotCommas(mail)
-				&& dotAfterAt(mail.substring(positionOfAt));
+				&& dotAfterAt(mail.substring(positionOfAt))
+				&& dotBeforeAt(mail.substring(0, positionOfAt - 1));
 	}
 
 	private boolean dotAfterAt(String mailAfterAt) {
@@ -15,6 +16,10 @@ public class MailVerifier {
 
 	private boolean hasNotSpacesAndNotCommas(String mail) {
 		return !mail.contains(" ") && !mail.contains(",");
+	}
+
+	private boolean dotBeforeAt(String mailBeforeAt) {
+		return mailBeforeAt.contains(".");
 	}
 
 	/**
