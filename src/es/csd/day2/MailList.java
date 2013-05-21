@@ -7,16 +7,13 @@ public class MailList {
 
 	public Set<String> getMails(String mailList) {
 
-		return separateMails(mailList);
-	}
-
-	private Set<String> separateMails(String mailList) {
-
 		Set<String> mailsSet = new HashSet<String>();
 		String[] mails = mailList.split(",");
-
+		MailVerifier myMailVerifier = new MailVerifier();
 		for (String mail : mails) {
-			mailsSet.add(mail);
+			if (myMailVerifier.isValidEmailAddress(mail.trim())) {
+				mailsSet.add(mail.trim());
+			}
 		}
 
 		return mailsSet;
