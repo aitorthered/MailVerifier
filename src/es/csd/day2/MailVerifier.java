@@ -4,21 +4,34 @@ public class MailVerifier {
 
 	public boolean isValidEmailAddress(String mail) {
 		boolean isValid = false;
-		if (hasOnlyOneAt(mail) && hasNotSpacesAndNotCommas(mail)) {
+		int positionOfAt = hasOnlyOneAt(mail);
+		if (positionOfAt != -1 && hasNotSpacesAndNotCommas(mail)
+				&& dotAfterAt(mail.substring(positionOfAt))) {
 			isValid = true;
 		}
 		return isValid;
+	}
+
+	private boolean dotAfterAt(String mailAfterAt) {
+		return mailAfterAt.contains(".");
 	}
 
 	private boolean hasNotSpacesAndNotCommas(String mail) {
 		return !mail.contains(" ") && !mail.contains(",");
 	}
 
-	private boolean hasOnlyOneAt(String mail) {
-		if ((mail.split("@")).length != 2) {
-			return false;
+	/**
+	 * Check if has only one at. Returns -1 if more than one or none were found.
+	 * Returns position of the AT in case only one At is found
+	 * 
+	 * @param mail
+	 * @return
+	 */
+	private int hasOnlyOneAt(String mail) {
+		String[] splitStr = mail.split("@");
+		if (splitStr.length != 2) {
+			return -1;
 		}
-		return true;
+		return splitStr[0].length();
 	}
-
 }
